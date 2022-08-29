@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
-import { HashRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import ExercicesGroup from '../Exercices/ExercicesGroup';
+import { FC } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import HeaderPage from './HeaderPage';
 
 interface BasicPageProps {

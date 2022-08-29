@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import ExerciceContent from './ExerciceContent';
 import { useFetchData, TDataResponse } from '../../hooks/useFetchData';
 

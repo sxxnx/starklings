@@ -1,4 +1,3 @@
-import React, { FC, useEffect } from 'react';
 import ExerciceCard from './ExerciceCard';
 import HeaderPage from '../views/HeaderPage';
 import { useFetchData, TDataResponse } from '../../hooks/useFetchData';
