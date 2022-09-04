@@ -1,0 +1,68 @@
+@use '_var.sass' as var
+
+
+
+@media (max-width: 480px)
+  .App
+    padding: var.$gap-s
+    .navbar
+        margin-bottom: var.$gap-l
+        .logo
+            display: flex
+            align-items: center
+            .nav-logo 
+                width: 50px
+                margin-right: 5px
+            .site-title
+                font-size: var.$button-text-size
+                vertical-align: baseline
+                margin-right: var.$gap
+
+    .button-primary 
+        font-size: .75rem
+        padding: 15px var.$gap-xs - 10px
+
+
+    .page
+        .header
+            margin-bottom: var.$gap-l
+            h1
+                font-size: var.$subtitle-size
+            .subtitle
+                font-size: var.$text-size
+    
+        .section 
+            flex-direction: column
+            text-align: unset
+            .explanations
+                padding-right: 0
+                .section-description 
+                    margin-bottom: var.$gap-s
+        
+            .illustration
+                max-width: 480px
+                .section-image 
+                    width: 100%
+
+            .explanations
+                padding-left: 0
+                .section-header
+                    font-size: var.$subtitle-size
+                .button-boxed
+                    text-align: center
+                    float: none
+                    max-width: 480px
+             
+        .separator-button 
+            margin: var.$gap-m 0 var.$gap-m 0
+        
+    .footer
+        text-align: center
+        margin-top: var.$gap-l
+    
+
+
+    
+
+
+
