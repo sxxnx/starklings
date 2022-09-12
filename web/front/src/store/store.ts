@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import walletReducer from './reducers/wallet'
+import userReducer from './reducers/wallet'
 import { useDispatch } from 'react-redux'
 
 const loading: Record<string, string> = {
@@ -8,12 +8,12 @@ const loading: Record<string, string> = {
 
 export interface AppState {
   loading: typeof loading;
-  wallet: typeof walletReducer;
+  user: typeof userReducer;
 }
 
 const store = configureStore({
   reducer: {
-    wallet: walletReducer
+    user: userReducer
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false })
 })
@@ -21,4 +21,5 @@ const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>()
+
 export const wrapper = store
