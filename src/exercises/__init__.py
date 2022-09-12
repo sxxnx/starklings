@@ -14,6 +14,15 @@ course = [
         ],
     ),
     Directory(
+        "operations",
+        [
+            Exercise("operations00"),
+            Exercise("operations01"),
+            Exercise("operations02"),
+            Exercise("operations03"),
+        ],
+    ),
+    Directory(
         "strings",
         [
             Exercise("strings00"),
@@ -55,6 +64,7 @@ course = [
             Exercise("registers01"),
             Exercise("registers02"),
             Exercise("registers03"),
+            Exercise("registers04"),
         ],
     ),
     Directory(

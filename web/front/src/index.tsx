@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StarknetProvider, getInstalledInjectedConnectors } from '@starknet-react/core'
+import { wrapper } from './store/store'
+import { Provider } from 'react-redux'
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,9 +16,11 @@ const connectors = getInstalledInjectedConnectors()
 
 root.render(
   <React.StrictMode>
-    <StarknetProvider connectors={connectors}>
-      <App />
-    </StarknetProvider>
+    <Provider store={wrapper}>
+      <StarknetProvider connectors={connectors}>
+        <App />
+      </StarknetProvider>
+    </Provider>
   </React.StrictMode>
 );
 

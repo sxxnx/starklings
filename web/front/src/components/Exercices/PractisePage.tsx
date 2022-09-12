@@ -1,6 +1,4 @@
-import React, { FC, useState } from 'react'
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
-import { useFetchData, TDataResponse } from '../../hooks/useFetchData'
+import { FC, useState } from 'react'
 import HeaderPage from '../views/HeaderPage'
 import { useLocation } from 'react-router-dom'
 import CodeEditor from './CodeEditor'

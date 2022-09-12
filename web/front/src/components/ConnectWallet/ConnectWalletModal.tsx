@@ -1,6 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useConnectors, useStarknet, useSignTypedData } from '@starknet-react/core'
 import { getTypedMessage } from '../../hooks/wallet'
+
+//API
+import { useSelector } from 'react-redux'
+import { RootState, useAppDispatch } from '../../store/store'
+import { fetchUser, registerUser, UserState } from '../../store/reducers/user'
 
 
 interface Props {
@@ -11,11 +16,13 @@ interface Props {
 
 const ConnectWalletModal: FC<Props> = ({ open, close, buttonClass }: Props) => {
     const { connect, disconnect, connectors } = useConnectors()
-    const { account } = useStarknet();
+    const { account } = useStarknet()
+    const user = useSelector<RootState, UserState>(state => state.user)
+    const dispatch = useAppDispatch()
     const isWalletConnected = (account !== undefined && account !== null && account.length > 0)
-    const [signature, setSignature] = useState(null)
+    //const [signature, setSignature] = useState(null)
 
-    const { data, error, signTypedData, loading } = useSignTypedData(getTypedMessage(account, 'alpha4.starknet.io'))
+    const { data, signTypedData, loading } = useSignTypedData(getTypedMessage(account, 'alpha4.starknet.io'))
 
     const handleConnect = ((connector: any) => {
       if (isWalletConnected) {
@@ -26,23 +33,34 @@ const ConnectWalletModal: FC<Props> = ({ open, close, buttonClass }: Props) => {
       }
     })
 
-    const signStarklings = () => {
-        //Implements Connexion logic : Check API if user exists, else, create account with signature
-        signTypedData()
-    }
+    useEffect(() => {
+        console.log(user)
+        if (isWalletConnected && user.status === "disconnected") {
+            console.log("Fetching User...")
+            dispatch(fetchUser({
+                "wallet_address": account
+            }))
+        }
+    }, [isWalletConnected])
+
 
     useEffect(() => {
+        //console.log(user)
         if (data && ~loading) {
+            dispatch(registerUser({
+                "wallet_address": account,
+                "signature": data
+            }))
             close()
         }
-    }, [loading, data, close])
+    }, [data])
 
     return (
         <div className="wallet-modal" style={{ display: open ? 'block' : 'none' }}>
             <div className="wallet-modal-content">
                 {isWalletConnected ?
                     <>
-                    <button onClick={signStarklings} className={buttonClass}>
+                    <button onClick={signTypedData} className={buttonClass}>
                         {'Sign in Starklings'}
                     </button>
                     <button onClick={() => handleConnect(null)} className={buttonClass}>

@@ -4,6 +4,7 @@
 # Python
 __pycache__
 env
+*.py[cod]
 
 # Protostar
 build
@@ -13,3 +14,6 @@ dist
 
 .solutions
 starklings.db
+starklings-backend/.env
+.DS_Store
+package-lock.json

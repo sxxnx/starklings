@@ -1,0 +1,11 @@
+--- ./exercises/registers/registers04.cairo	2022-08-07 17:55:58.875865309 +0200
++++ ./.solutions/registers04.cairo	2022-08-07 17:55:48.967775665 +0200
+@@ -12,0 +13 @@
++    let res = 67 + x * (45 + x * (23 + x))
+@@ -19,0 +21,6 @@
++    [ap] = x; ap++
++    [ap] = [ap - 1] + 23; ap++
++    [ap] = [ap - 1] * [ap - 2]; ap++
++    [ap] = [ap - 1] + 45; ap++
++    [ap] = [ap - 1] * [ap - 4]; ap++
++    [ap] = [ap - 1] + 67; ap++
