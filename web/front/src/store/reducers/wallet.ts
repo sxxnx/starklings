@@ -9,10 +9,11 @@ export interface WalletState {
 }
 
 const initialState: WalletState = {
-  account: undefined,
+  account: '',
   status: 'disconnected',
   error: ''
 }
+
 
 export const fetchUser = createAsyncThunk('user/fetchUserInfo', async (userData) => {
   const result = await starklingsAPI.registerUser(userData)
@@ -49,8 +50,7 @@ const userSlice = createSlice({
   }
 })
 
-export const { disconnect } = userSlice.actions
 
 export default userSlice.reducer
-
+export const { disconnect } = userSlice.actions
 export const selectStarknetInfo = (state: RootState) => state.user

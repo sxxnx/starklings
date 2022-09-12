@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStarknet } from '@starknet-react/core'
 import ConnectWalletModal from './ConnectWalletModal'
-
+import ExercicesGroup from '../Exercices/ExercicesGroup';
 
 interface ButtonConnectWalletProps {
   buttonClass: string,

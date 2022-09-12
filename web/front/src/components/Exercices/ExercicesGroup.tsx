@@ -2,7 +2,6 @@ import ExerciceCard from './ExerciceCard';
 import HeaderPage from '../views/HeaderPage';
 import { useFetchData, TDataResponse } from '../../hooks/useFetchData';
 
-
 function ExercicesGroup() {
   const getExercicesData: TDataResponse = useFetchData('https://api.github.com/repos/onlydustxyz/starklings/contents/exercises')
   let cardList: any = []
