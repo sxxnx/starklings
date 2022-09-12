@@ -3,8 +3,9 @@ import { useConnectors, useStarknet, useSignTypedData } from '@starknet-react/co
 import { getTypedMessage } from '../../hooks/wallet'
 
 //API
+import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from '../../store/store'
-import { fetchUser } from '../../store/reducers/user'
+import { fetchUser, registerUser, UserState } from '../../store/reducers/user'
 
 
 interface Props {
@@ -15,7 +16,8 @@ interface Props {
 
 const ConnectWalletModal: FC<Props> = ({ open, close, buttonClass }: Props) => {
     const { connect, disconnect, connectors } = useConnectors()
-    const { account } = useStarknet();
+    const { account } = useStarknet()
+    const user = useSelector<RootState, UserState>(state => state.user)
     const dispatch = useAppDispatch()
     const isWalletConnected = (account !== undefined && account !== null && account.length > 0)
     //const [signature, setSignature] = useState(null)
@@ -32,7 +34,8 @@ const ConnectWalletModal: FC<Props> = ({ open, close, buttonClass }: Props) => {
     })
 
     useEffect(() => {
-        if (isWalletConnected) {
+        console.log(user)
+        if (isWalletConnected && user.status === "disconnected") {
             console.log("Fetching User...")
             dispatch(fetchUser({
                 "wallet_address": account
@@ -42,7 +45,12 @@ const ConnectWalletModal: FC<Props> = ({ open, close, buttonClass }: Props) => {
 
 
     useEffect(() => {
+        //console.log(user)
         if (data && ~loading) {
+            dispatch(registerUser({
+                "wallet_address": account,
+                "signature": data
+            }))
             close()
         }
     }, [data])

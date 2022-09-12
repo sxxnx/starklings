@@ -38,7 +38,27 @@ export const fetchUser = createAsyncThunk('user/fetchUserInfo', async (userData:
   } else {
     return {
       'status': 'disconnected',
-      'account': '0x0'
+      'account': ''
+    }
+  }
+})
+
+export const registerUser = createAsyncThunk('user/registerUser', async (userData: object) => {
+  const result = await starklingsAPI.registerUser(userData)
+  if (result.status === 200) {
+    const user = result.data
+    return {
+      'status': 'connected',
+      'account': user.wallet_address,
+      'github': user.github,
+      'username': user.username,
+      'score': user.score,
+      'validatedExercises': user.validated_exercises,
+    }
+  } else {
+    return {
+      'status': 'disconnected',
+      'account': ''
     }
   }
 })
