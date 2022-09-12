@@ -1,0 +1,5 @@
+--- exercises/operations/operations02.cairo	2022-08-15 14:09:44.344120823 +0200
++++ ./.solutions/operations02.cairo	2022-08-15 14:09:18.319879674 +0200
+@@ -14 +14 @@
+-    # TO FILL
++    let x = 89  # works for all prime numbers in range [50 ; 100]
