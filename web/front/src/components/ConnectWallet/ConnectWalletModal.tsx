@@ -26,23 +26,19 @@ const ConnectWalletModal: FC<Props> = ({ open, close, buttonClass }: Props) => {
       }
     })
 
-    const signStarklings = () => {
-        //Implements Connexion logic : Check API if user exists, else, create account with signature
-        signTypedData()
-    }
-
     useEffect(() => {
+        console.log(data)
         if (data && ~loading) {
             close()
         }
-    }, [loading, data, close])
+    }, [data])
 
     return (
         <div className="wallet-modal" style={{ display: open ? 'block' : 'none' }}>
             <div className="wallet-modal-content">
                 {isWalletConnected ?
                     <>
-                    <button onClick={signStarklings} className={buttonClass}>
+                    <button onClick={signTypedData} className={buttonClass}>
                         {'Sign in Starklings'}
                     </button>
                     <button onClick={() => handleConnect(null)} className={buttonClass}>

@@ -2,30 +2,36 @@ import { TypedData } from 'starknet/dist/utils/typedData'
 
 const getChainId = (providerUrl: string) => {
   if (providerUrl.includes('alpha-mainnet.starknet.io')) {
-    return 'SN_MAIN'
+    return 0
   } else if (providerUrl.includes('alpha4.starknet.io')) {
-    return 'SN_GOERLI'
+    return 1
   }
-  return 'localhost'
+  return 2
 }
 
-export const getTypedMessage = (wallet: string | undefined, providerBaseUrl: string): TypedData => ({
-  domain: {
-    name: 'Starklings',
-    chainId: getChainId(providerBaseUrl),
-    version: '1'
-  },
-  types: {
-    Starklings: [
-      { name: 'message', type: 'felt' },
-      { name: 'wallet', type: 'felt' },
-    ],
-    Message: [{ name: 'message', type: 'felt' }]
-  },
-  primaryType: 'Starklings',
-  message: {
-    message: 'Ok',
-    wallet: wallet,
-    version: 1
+export const getTypedMessage = (wallet: string | undefined, providerBaseUrl: string): TypedData => {
+  const typed: TypedData = {
+    types: {
+      StarkNetDomain: [
+        { name: 'name', type: 'felt' },
+        { name: 'version', type: 'felt' },
+        { name: 'chainId', type: 'felt' },
+      ],
+      StarklingsUser: [
+        { name: 'content', type: 'felt' },
+        { name: 'wallet', type: 'felt' }
+      ]
+    },
+    domain: {
+      name: 'Starklings App',
+      chainId: getChainId(providerBaseUrl),
+      version: '1'
+    },
+    primaryType: 'StarklingsUser',
+    message: {
+      content: 'Register to Starklings',
+      wallet: wallet
+    }
   }
-})
+  return typed
+}

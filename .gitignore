@@ -15,3 +15,5 @@ dist
 .solutions
 starklings.db
 starklings-backend/.env
+.DS_Store
+package-lock.json
