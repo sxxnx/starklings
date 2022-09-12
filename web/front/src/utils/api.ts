@@ -30,11 +30,11 @@ export const starklingsAPI = {
   getUserInfo: async (userData: any) => {
     const url = `/fetchUserInfo`
     const response = await starklings.post(url, userData)
-    return response.data
+    return response
   },
   registerUser: async (userData: any) => {
     const url = `/registerUser`
     const response = await starklings.post(url, userData)
-    return response.data
+    return response
   }
 }

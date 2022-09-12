@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import userReducer from './reducers/wallet'
+import userReducer from './reducers/user'
 import { useDispatch } from 'react-redux'
 
 const loading: Record<string, string> = {
