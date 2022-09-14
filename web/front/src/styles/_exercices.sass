@@ -1,4 +1,4 @@
-@use '_var.sass' as var
+@use '_var.sass' as *
 @use '_animations.sass' as anim
 
 @include anim.bg-color(smooth-color)
@@ -12,87 +12,87 @@
     align-items: stretch
     display: flex
     flex-flow: row wrap
-    gap: var.$gap-m var.$gap-m
-    margin-top: var.$gap-l
+    gap: $gap-m $gap-m
+    margin-top: $gap-l
 
 .exercice-card
-    background-color: var.$card-background-color
+    background-color: $card-background-color
     flex-grow: 3
-    font-family: var.$font-button
-    font-size: var.$text-size
+    font-family: $font-button
+    font-size: $text-size
     max-height: 90px // this prevents flex box to auto size height of sibling
-    padding: var.$gap-xs 0
+    padding: $gap-xs 0
     text-align: center
     &.show-content
         max-height: 100%
 
 .card-header
-    letter-spacing: var.$gap-xs / 2
-    padding: 0 var.$gap-m*2 0 var.$gap-m
+    letter-spacing: $gap-xs / 2
+    padding: 0 $gap-m*2 0 $gap-m
     text-transform: uppercase
     
 .exercice-card 
     .card-header:after
         content: "-"
-        height: var.$gap-s
-        margin-right: var.$gap-xs
-        margin-left: var.$gap-xs
+        height: $gap-s
+        margin-right: $gap-xs
+        margin-left: $gap-xs
         position: absolute
         vertical-align: middle
-        width: var.$gap-s
+        width: $gap-s
     .card-header.success:after
         background: url('../assets/icons/circle-success.svg')
-        color: var.$color-light-blue
+        color: $color-light-blue
         content: ''
     .card-header.wip:after
         background: url('../assets/icons/circle-wip.svg')
         content: ''
     .card-header.not-started:after
         background: url('../assets/icons/circle-fail.svg')
-        color: var.$color-nickel
+        color: $color-nickel
         content: ''
     &:hover
         animation: smooth-color 1s linear alternate both
-        background-color: rgba(var.$color-mid-blue, 0.8)
+        background-color: rgba($color-mid-blue, 0.8)
         transform: rotate(-2deg)
 .exercices
-    margin: (var.$gap-m / 1.5) 0 0 var.$gap-m
+    margin: ($gap-m / 1.5) 0 0 $gap-m
     text-align: left
 .exercice
-    font-size: var.$text-size
-    margin-top: var.$gap-xs
+    font-size: $text-size
+    margin-top: $gap-xs
     position: relative
     text-transform: capitalize
     &.success
-        color: var.$color-light-blue
+        color: $color-light-blue
     &:last-child
-        margin-bottom: var.$gap-m
+        margin-bottom: $gap-m
     &:last-child:after
         display: none
     &:before
         content:''
         display: inline-block
-        height: var.$gap-xs
-        margin-right: var.$gap-xs
+        height: $gap-xs
+        margin-right: $gap-xs
         vertical-align: middle
-        width: var.$gap-xs
+        width: $gap-xs
     &:after
-        background-color: var.$color-mid-blue
+        background-color: $color-mid-blue
         content:''
-        height: var.$gap-xs + 6px
-        left: (var.$gap-xs)/ 2 - 1px
-        margin-top: var.$gap-xs + 6px // gap between icons
+        height: $gap-xs + 6px
+        left: ($gap-xs)/ 2 - 1px
+        margin-top: $gap-xs + 6px // gap between icons
         position: absolute
         width: 3px
     &.not-started:before
-        border: 3px solid var.$color-light-purple
-        border-radius: var.$gap-xs
-        height: var.$gap-xs - 3px // border width
-        width: var.$gap-xs - 3px // border width
+        border: 3px solid $color-light-purple
+        border-radius: $gap-xs
+        height: $gap-xs - 3px // border width
+        width: $gap-xs - 3px // border width
     &.not-started:after
-        background-color: var.$color-light-purple
+        background-color: $color-light-purple
     &.success:before
         background: url('../assets/icons/circle-success.svg')
         background-size: contain
     &.success:after
-        background-color: var.$color-light-blue
+        background-color: $color-light-blue

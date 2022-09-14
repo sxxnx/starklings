@@ -1,9 +1,9 @@
-@use '_var.sass' as var
+@use '_var.sass' as *
 @use '_animations.sass' as anim
 
 @include anim.opacity-increase(opacity-increase)
 @include anim.open-box(open-box)
-@include anim.text-fade-out(fade-out, var.$color-space-blue)
+@include anim.text-fade-out(fade-out, $color-space-blue)
 
 .instructions
     flex-grow: 1
@@ -12,14 +12,14 @@
 
 //-- FILE UPLOAD ZONE --//
 .file-upload-zone
-    border: 1px dashed var.$color-space-purple
+    border: 1px dashed $color-space-purple
     border-radius: 5px
     height: 100px
-    margin-bottom: var.$gap-s
+    margin-bottom: $gap-s
     text-align: center
 
 .upload-icon
-    color: var.$color-space-purple
+    color: $color-space-purple
     font-size: 3rem
     padding: 20px 0
     &:hover
@@ -29,15 +29,15 @@
 //-- CODE EDITOR THEME --//
 canvas.minimap-decorations-layer, 
 .code-editor-wrapper
-    background: var.$color-space-blue
+    background: $color-space-blue
     transform: none
     &:hover
-        background: var.$color-space-blue
+        background: $color-space-blue
 .code-editor-wrapper
     width: 100%
     .code-editor
     .mtk7
-        color: var.$color-snow
+        color: $color-snow
     .monaco-editor,
     .monaco-editor-background,
     .monaco-editor .inputarea.ime-input,
@@ -48,54 +48,54 @@ canvas.minimap-decorations-layer,
 
 //-- UI --//
 .instructions
-    margin-right: var.$gap-m
+    margin-right: $gap-m
     .subtitle
         text-align: left
 .practise-mode
     min-width: 50%
 .validation 
-    padding: var.$gap-s
+    padding: $gap-s
     text-align: right
 .button-run-code
-    background: var.$color-light-blue
-    margin-left: var.$gap-xs
+    background: $color-light-blue
+    margin-left: $gap-xs
 .button-upload
-    background: var.$color-space-purple
-    margin-bottom: var.$gap-s
+    background: $color-space-purple
+    margin-bottom: $gap-s
 .button-paste
-    background: var.$color-space-blue
-    border: var.$gap-xs
-    color: var.$color-snow
+    background: $color-space-blue
+    border: $gap-xs
+    color: $color-snow
     margin: 0
-    padding: 0 0 var.$gap-s 0
+    padding: 0 0 $gap-s 0
 .button-run-code,
 .button-upload,
 .button-paste
-    border-radius: var.$border-radius
+    border-radius: $border-radius
     cursor: pointer
-    font-family: var.$font-base
-    font-size: var.$text-size
-    padding: 15px var.$gap-m
+    font-family: $font-base
+    font-size: $text-size
+    padding: 15px $gap-m
 .button-clicked
     animation: open-box 0.4s cubic-bezier(0.230, 1.000, 0.320, 1.000) both, fade-out 0.2s ease-out both
 .icon-docs 
     position: relative
     &:hover:after
-        background: rgba(var.$color-black, 0.6)
+        background: rgba($color-black, 0.6)
         border-radius: 5px
         content: 'Go to documentation'
-        font-size: var.$text-s
-        height: var.$gap-s
+        font-size: $text-s
+        height: $gap-s
         left: -125px
-        line-height: var.$gap-s
+        line-height: $gap-s
         position: absolute
         text-align: center
         top: -20px
         width: 250px
     svg
-        color: var.$color-space-purple
-        height: var.$icon-size
-        margin-right: var.$gap-s
+        color: $color-space-purple
+        height: $icon-size
+        margin-right: $gap-s
         opacity: 0.5
         vertical-align: middle
         &:hover

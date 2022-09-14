@@ -1,14 +1,14 @@
-@use '_var.sass' as var
+@use '_var.sass' as *
 @use '_animations.sass' as anim
 
-@include anim.text-glow(loglow, var.$color-snow)
-@include anim.box-glow(primaryglow, var.$button-primary-color)
-@include anim.box-glow(secondaryglow, var.$button-secondary-color)
-@include anim.color-text(footerlinks, var.$color-nickel, var.$color-space-purple)
-@include anim.text-glow(linkglow, var.$color-space-purple)
-@include anim.text-glow(buttonprimaryglow, var.$color-snow)
-@include anim.text-glow(buttonsecondaryglow, var.$color-mid-blue)
-@include anim.color-text(iconcolor, var.$color-mid-blue, var.$color-space-purple)
+@include anim.text-glow(loglow, $color-snow)
+@include anim.box-glow(primaryglow, $button-primary-color)
+@include anim.box-glow(secondaryglow, $button-secondary-color)
+@include anim.color-text(footerlinks, $color-nickel, $color-space-purple)
+@include anim.text-glow(linkglow, $color-space-purple)
+@include anim.text-glow(buttonprimaryglow, $color-snow)
+@include anim.text-glow(buttonsecondaryglow, $color-mid-blue)
+@include anim.color-text(iconcolor, $color-mid-blue, $color-space-purple)
 
 //-- RESET + BASE --//
 html, .background
@@ -20,26 +20,26 @@ html, .background
     -o-background-size: cover
 html, body, div, p, ul, li, h2
     background-size: 100%
-    font-family: var.$font-base
+    font-family: $font-base
     list-style: none
     margin: 0
     padding: 0
 a 
-    color: var.$color-snow
+    color: $color-snow
     text-decoration: none
     &:visited
         color: inherit
 button
     border: none
 .App
-    color: var.$text-color
-    padding: var.$gap-m var.$gap-m *2 var.$gap-s var.$gap-m * 2
+    color: $text-color
+    padding: $gap-m $gap-m *2 $gap-s $gap-m * 2
 
 //-- NAV --//
 .site-title
-    color: var.$color-snow
-    font-family: var.$font-logo
-    font-size: var.$logo-text-size
+    color: $color-snow
+    font-family: $font-logo
+    font-size: $logo-text-size
     text-transform: uppercase
     &:hover
         animation: loglow 3s 10 backwards
@@ -48,11 +48,11 @@ button
 
 //-- HEADINGS --//
 h1
-    font-family: var.$font-title
-    font-size: var.$h1-size
+    font-family: $font-title
+    font-size: $h1-size
 .subtitle
-    font-size: var.$subtitle-size
-    font-family: var.$font-subtitle
+    font-size: $subtitle-size
+    font-family: $font-subtitle
 
 //-- HEADERS --//
 .header
@@ -62,24 +62,24 @@ h1
 
 // -- PAGE --//
 .section
-    font-size: var.$text-size
+    font-size: $text-size
     text-align: justify
     h2
-        color: var.$h2-color
-        font-family: var.$font-title
-        font-size: var.$h2-size
-        margin-bottom: var.$gap-s
+        color: $h2-color
+        font-family: $font-title
+        font-size: $h2-size
+        margin-bottom: $gap-s
         text-transform: uppercase
 
 //-- FOOTER --//
 .link 
-    color: var.$footer-link-color
-    font-size: var.$text-s
+    color: $footer-link-color
+    font-size: $text-s
     text-transform: uppercase
     a:hover
         animation: footerlinks 8s linear infinite alternate both, linkglow 8s 10 backwards
 .footer-icon a svg
-    color: var.$color-mid-blue
+    color: $color-mid-blue
     &:hover
         animation: iconcolor 5s linear infinite alternate both
 
@@ -87,18 +87,18 @@ h1
 .button-primary,
 .button-secondary
     border-radius: 5px
-    font-family: var.$font-button
-    font-size: var.$button-text-size
+    font-family: $font-button
+    font-size: $button-text-size
     padding: 15px 40px
     text-transform: uppercase
 .button-primary
-    background-color: var.$button-primary-color
-    color: var.$button-primary-text-color
+    background-color: $button-primary-color
+    color: $button-primary-text-color
     &:hover
         animation: primaryglow 3s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both, buttonprimaryglow 6s infinite backwards
 .button-secondary
-    background-color: var.$button-secondary-color
-    color: var.$button-secondary-text-color
-    font-size: var.$text-s
+    background-color: $button-secondary-color
+    color: $button-secondary-text-color
+    font-size: $text-s
     &:hover
         animation: secondaryglow 3s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite both, buttonsecondaryglow 6s infinite backwards

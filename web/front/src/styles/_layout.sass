@@ -1,4 +1,4 @@
-@use '_var.sass' as var
+@use '_var.sass' as *
 
 // Layout file defines the positioning of the base elements
 
@@ -7,7 +7,7 @@
     align-items: center
     display: flex
     flex-wrap: nowrap
-    margin-bottom: var.$section-gap
+    margin-bottom: $section-gap
 .logo 
     flex-grow: 2
     .site-title,
@@ -15,11 +15,11 @@
         display: inline-block
         vertical-align: middle
 .nav-logo 
-    margin-right: var.$gap-s
+    margin-right: $gap-s
 
 //-- PAGE --//
 .header
-    margin-bottom: var.$section-gap
+    margin-bottom: $section-gap
 
 .section
     align-items: flex-start
@@ -33,25 +33,25 @@
         flex-grow: 2
     .button-boxed
         float: right
-        font-size: var.$button-text-size * 0.5
-        margin-top: var.$gap-m
+        font-size: $button-text-size * 0.5
+        margin-top: $gap-m
         max-width: 350px
 
 .separator-button
-    margin: var.$gap-l 0 var.$gap-l 0
+    margin: $gap-l 0 $gap-l 0
     text-align: center
 
 //-- FOOTER --//
 .footer
-    margin-top: var.$gap-xl * 1.25
+    margin-top: $gap-xl * 1.25
     text-align: right
 .social-network-links
-    padding-right: var.$gap-xs // align svg margin
+    padding-right: $gap-xs // align svg margin
     .footer-icon:first-child
-        margin-right: var.$gap-xs
+        margin-right: $gap-xs
     .footer-icon:last-child
-        margin-left: var.$gap-xs
+        margin-left: $gap-xs
 .footer-icon
     display: inline-block
     svg 
-        height: var.$icon-size
+        height: $icon-size
