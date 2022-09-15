@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react';
-import { useConnectors, useStarknet, useSignTypedData } from '@starknet-react/core'
+import { useConnectors, useStarknet, useSignTypedData, Connector } from '@starknet-react/core'
+import { getMessageHash } from 'starknet/dist/utils/typedData'
 import { getTypedMessage } from '../../hooks/wallet'
 
 //API
@@ -20,21 +21,18 @@ const ConnectWalletModal: FC<Props> = ({ open, close, buttonClass }: Props) => {
     const user = useSelector<RootState, UserState>(state => state.user)
     const dispatch = useAppDispatch()
     const isWalletConnected = (account !== undefined && account !== null && account.length > 0)
-    //const [signature, setSignature] = useState(null)
-
     const { data, signTypedData, loading } = useSignTypedData(getTypedMessage(account, 'alpha4.starknet.io'))
 
-    const handleConnect = ((connector: any) => {
-      if (isWalletConnected) {
+    const connectWallet = ((connector: any) => {
+        connect(connector)
+    })
+    
+    const disconnectWallet = (() => {
         disconnect()
         close()
-      } else {
-        connect(connector)
-      }
     })
 
     useEffect(() => {
-        console.log(user)
         if (isWalletConnected && user.status === "disconnected") {
             console.log("Fetching User...")
             dispatch(fetchUser({
@@ -45,11 +43,12 @@ const ConnectWalletModal: FC<Props> = ({ open, close, buttonClass }: Props) => {
 
 
     useEffect(() => {
-        //console.log(user)
-        if (data && ~loading) {
+        if (data && !loading) {
+            const hash = getMessageHash(getTypedMessage(account, 'alpha4.starknet.io'), account)
             dispatch(registerUser({
                 "wallet_address": account,
-                "signature": data
+                "signature": data,
+                "hash": hash
             }))
             close()
         }
@@ -59,25 +58,38 @@ const ConnectWalletModal: FC<Props> = ({ open, close, buttonClass }: Props) => {
         <div className="wallet-modal" style={{ display: open ? 'block' : 'none' }}>
             <div className="wallet-modal-content">
                 {isWalletConnected ?
-                    <>
-                    <button onClick={signTypedData} className={buttonClass}>
-                        {'Sign in Starklings'}
-                    </button>
-                    <button onClick={() => handleConnect(null)} className={buttonClass}>
-                        {'Disconnect'}
-                    </button>
-                    </>
-                : connectors.map((connector) =>
-                    connector.available() &&
-                    (
-                        <button key={connector.id()} onClick={() => handleConnect(connector)} className={buttonClass}>
-                            {'Connect with '+connector.name()}
-                        </button>
-                    )
-                )}
+                    renderConnectedWalletModal(signTypedData, disconnectWallet, buttonClass)
+                    : 
+                    renderConnectWalletModal(connectors, connectWallet, buttonClass)
+                }
             </div>
         </div>
     );
   }
+
+function renderConnectedWalletModal(signTypedData: Function, disconnect: Function, buttonClass: string) {
+    return (
+        <>
+            <button onClick={() => signTypedData()} className={buttonClass}>
+                {'Sign in Starklings'}
+            </button>
+            <button onClick={() => disconnect()} className={buttonClass}>
+                {'Disconnect'}
+            </button>
+        </>
+    )
+}
+
+function renderConnectWalletModal(connectors: Array<Connector>, connect: Function, buttonClass: string) {
+
+    return (
+        connectors.map((connector) => connector.available() &&
+            (
+                <button key={connector.id()} onClick={() => connect(connector)} className={buttonClass}>
+                    {'Connect with '+connector.name()}
+                </button>
+            )
+    ))
+}
   
-  export default ConnectWalletModal;
+export default ConnectWalletModal;
